@@ -1,0 +1,4 @@
+[{
+    "keys": ["ctrl+super+l"],
+    "command": "beautify_latex"
+}]

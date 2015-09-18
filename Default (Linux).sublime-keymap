@@ -1,0 +1,3 @@
+[
+  { "keys": ["ctrl+alt+l"], "command": "beautify_latex" }
+]
