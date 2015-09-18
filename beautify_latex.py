@@ -1,6 +1,7 @@
 import os.path
 import sublime, sublime_plugin, sys, re
 import subprocess
+import tempfile
 
 class BeautifyLatexOnSave(sublime_plugin.EventListener):
   def on_pre_save(self, view):
@@ -31,10 +32,15 @@ class BeautifyLatexCommand(sublime_plugin.TextCommand):
     if buffer_text == "":
       return
     self.save_viewport_state()
-    beautified_buffer = self.pipe(self.cmd(self.view.file_name()))
-    fix_lines = beautified_buffer.replace(os.linesep,'\n')
-    self.check_valid_output(fix_lines)
-    self.view.replace(edit, buffer_region, fix_lines)
+
+    with tempfile.NamedTemporaryFile() as temp:
+      temp.write(buffer_text.encode("utf-8"))
+      temp.flush()
+      beautified_buffer = self.pipe(self.cmd(temp.name))
+      fix_lines = beautified_buffer.replace(os.linesep,'\n')
+      self.check_valid_output(fix_lines)
+      self.view.replace(edit, buffer_region, fix_lines)
+
     self.reset_viewport_state()
 
   def check_valid_output(self, text):
