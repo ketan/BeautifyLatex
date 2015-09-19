@@ -33,14 +33,17 @@ class BeautifyLatexCommand(sublime_plugin.TextCommand):
       return
     self.save_viewport_state()
 
-    with tempfile.NamedTemporaryFile() as temp:
-      temp.write(buffer_text.encode("utf-8"))
-      temp.flush()
-      beautified_buffer = self.pipe(self.cmd(temp.name))
-      fix_lines = beautified_buffer.replace(os.linesep,'\n')
-      self.check_valid_output(fix_lines)
-      self.view.replace(edit, buffer_region, fix_lines)
-
+    with tempfile.NamedTemporaryFile(delete=False) as temp:
+      try: 
+          temp.write(buffer_text.encode("utf-8"))
+          temp.flush()
+          temp.close()
+          beautified_buffer = self.pipe(self.cmd(temp.name))
+          fix_lines = beautified_buffer.replace(os.linesep,'\n')
+          self.check_valid_output(fix_lines)
+          self.view.replace(edit, buffer_region, fix_lines)
+      finally: 
+          os.unlink(temp.name)
     self.reset_viewport_state()
 
   def check_valid_output(self, text):
@@ -54,7 +57,7 @@ class BeautifyLatexCommand(sublime_plugin.TextCommand):
       msg = "executable: '" + executable + "' not found."
       raise Exception(msg)
 
-    return executable + " '" + str(path) + "'"
+    return '"' + executable + '" "' + str(path) + '"'
 
   def finalize_output(self, text):
     lines = text.splitlines()
