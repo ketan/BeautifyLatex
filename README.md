@@ -7,20 +7,20 @@ Prettifies latex code using [latexindent.pl](https://github.com/cmhughes/latexin
 This package offers a pre-save hook, i.e., your latex files will be reformatted automatically before saving. To activate this feature, set:
 
 ```
-  "run_on_save": true,
+"run_on_save": true,
 ```
 
 
 The sublime command "beautify_latex" performs a save after formatting. You can disable this default by setting:
 
 ```
-  "save_on_beautify": false
+"save_on_beautify": false
 ```
 
 You can change the file patterns handled by this plugin in the settings:
 
 ```
-    "file_patterns": [ "\\.tex"],
+"file_patterns": [ "\\.tex"],
 ```
 
 ### Tabs or Spaces
@@ -34,7 +34,7 @@ By default, Sublime does not translate tabs to spaces. If you wish to use tabs y
 ### Key Binding
 
 ```
-  ctrl + cmd + k on OS X, or ctrl + alt + k on Windows
+ctrl + cmd + L on OS X, or ctrl + alt + L on Windows
 ```
 
 # Installation
@@ -48,14 +48,13 @@ In ST2, press "cmd + shift + p" and then type "install".
 Once you see "Package Control: Install Package", enter.
 
 When the packages load, another selection window will appear. Type
-
-BeautifyTex and enter. All done!
+BeautifyLatex and enter. All done!
 
 ### Manual Installation
 
 ```bash
-  cd "~/Library/Application Support/Sublime Text 2/Packages/"
-  git clone git://github.com/ketan/BeautifyLatex.git
+cd "~/Library/Application Support/Sublime Text 2/Packages/"
+git clone git://github.com/ketan/BeautifyLatex.git
 ```
 
 ### Note for Mac users
