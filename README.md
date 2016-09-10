@@ -57,6 +57,14 @@ cd "~/Library/Application Support/Sublime Text 2/Packages/"
 git clone git://github.com/ketan/BeautifyLatex.git
 ```
 
+### Manually setting the path to `latexindent`
+
+If you have `latexindent` in a non-standard location, you can set the path to the `latexindent` executable by specifying `latexindent_path` in your BeautifyLatex settings. For example:
+
+```
+"latexindent_path": "/Library/TeX/texbin/latexindent"
+```
+
 ### Note for Mac users
 If you are using OS X El Capitan and get the following error 
 
@@ -97,18 +105,14 @@ while saving `tex` files, you may want to check the following things.
 
   After executing the above lines, check the availability of `latexindent` by typing `perl latexindent` again in the terminal.
 
-3. Install [`Fix Mac Path`](https://packagecontrol.io/packages/Fix%20Mac%20Path) package and add the following line
+3. Install [`Fix Mac Path`](https://packagecontrol.io/packages/Fix%20Mac%20Path) package. This will allow BeautifyLatex to find your `latexindent` executable if it is in your `PATH`. 
 
-        {
-          "additional_path_items": ["/Library/TeX/texbin"]
-        }
+4. If BeautifyLatex still doesn't work, you may need to manually set the path of `latexindent` executable by adding the following to your BeautifyLatex settings:
+ 
 
-  in the `user` settings of `BeautifyLatex`. The string `"/Library/TeX/texbin"` is the directory containing your `latexindent`. Change it accordingly if you have a different directory.
+         "latexindent_path": "/Library/TeX/texbin/latexindent"     
 
-4. If the problem has been solved, great! Otherwise (I mean you still saw `Error: can't specify None for path argument`), type the following line in terminal,
-        
-        $ sudo ln -s /Library/TeX/texbin/latexindent /Library/TeX/texbin/latexindent.pl
-    
-  which links `latexindent.pl` to `latexindent`. (It seems that by default `MacTeX` does not ship with `latexindent.pl`.) After linking, `BeautifyLatex` should run beautifully now.
+ 
+  `/Library/TeX/texbin/latexindent` is the default location in MacTeX 2016. If you are using another TeX distribution, you may need to change this accordingly.
 
 As a reference, you may want to read this [thread](http://tex.stackexchange.com/questions/326600/use-latexindent-pl-with-beautifylatex-in-sublime-text/326619?noredirect=1#comment799934_326619) on tex.stackexchange.com.
