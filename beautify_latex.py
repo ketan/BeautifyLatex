@@ -33,7 +33,8 @@ class BeautifyLatexCommand(sublime_plugin.TextCommand):
       return
     self.save_viewport_state()
 
-    with tempfile.NamedTemporaryFile(delete=False) as temp:
+    ext = os.path.splitext(self.view.file_name())[1]
+    with tempfile.NamedTemporaryFile(delete=False,suffix=ext) as temp:
       try: 
           temp.write(buffer_text.encode("utf-8"))
           temp.flush()
