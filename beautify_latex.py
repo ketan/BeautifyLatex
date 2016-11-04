@@ -53,7 +53,12 @@ class BeautifyLatexCommand(sublime_plugin.TextCommand):
       raise Exception(msg)
 
   def cmd(self, path = "-"):
-    executable = self.which('latexindent.exe') or self.which('latexindent.pl')
+    if self.settings.get('latexindent_path'):
+      executable = self.settings.get('latexindent_path') 
+    else:
+      executable = (self.which('latexindent.exe') or
+                    self.which('latexindent.pl') or
+                    self.which('latexindent'))
     if not os.path.exists(executable):
       msg = "executable: '" + executable + "' not found."
       raise Exception(msg)
