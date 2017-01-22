@@ -16,7 +16,6 @@ class BeautifyLatexOnSave(sublime_plugin.EventListener):
 
 class BeautifyLatexCommand(sublime_plugin.TextCommand):
     def run(self, edit, error=True, save=True):
-        print('GO!')
         self.load_settings()
         self.view.settings().set('translate_tabs_to_spaces',
                                  self.settings.get('translate_tabs_to_spaces'))
@@ -42,12 +41,10 @@ class BeautifyLatexCommand(sublime_plugin.TextCommand):
 
         ext = os.path.splitext(self.view.file_name())[1]
         with tempfile.NamedTemporaryFile(delete=False, suffix=ext) as temp:
-            print(temp.name)
             try:
                 temp.write(buffer_text.encode("utf-8"))
                 temp.flush()
                 temp.close()
-                print(self.cmd(temp.name))
                 beautified_buffer = self.pipe(self.cmd(temp.name))
                 fix_lines = beautified_buffer.replace(os.linesep, '\n')
                 self.check_valid_output(fix_lines)
