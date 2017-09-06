@@ -40,23 +40,23 @@ By default, Sublime does not translate tabs to spaces. If you wish to use tabs y
 # Installation
 
 ### Package Control
-Using [Package Control](http://wbond.net/sublime_packages/package_control), a
-package manager for Sublime Text 2.
-
-In ST2, press "cmd + shift + p" and then type "install".
-
-Once you see "Package Control: Install Package", enter.
-
-When the packages load, another selection window will appear. Type
-
-BeautifyTex and enter. All done!
+This package is a fork of [ketan/BeautifyLatex](https://github.com/ketan/BeautifyLatex), and the Sublime Text package has not been updated (as of Sep 6 2017). So you have to install the package manually.
 
 ### Manual Installation
 
+**1. Navigate to the Sublime Text package directory**
 ```bash
-  cd "~/Library/Application Support/Sublime Text 2/Packages/"
-  git clone git://github.com/ketan/BeautifyLatex.git
+  cd "~/Library/Application Support/Sublime Text 2/Packages/" # OS X (I think)
+  cd "C:\Users\<username>\AppData\Roaming\Sublime Text 3\Packages" # (using Windows 10)
 ```
+**2. Clone this repository**
+```bash
+  git clone https://github.com/flipphillips/BeautifyLatex.git
+  ### Or ###
+  git clone git@github.com:flipphillips/BeautifyLatex.git
+```
+
+**3. Restart Sublime Text**
 
 ### Note for Mac users
 If you are using OS X El Capitan and get the following error 
