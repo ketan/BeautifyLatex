@@ -92,7 +92,7 @@ while saving `tex` files, you may want to check the following things.
 
 
         $ sudo cpan App::cpanminus
-        $ sudo cpanm YAML::Tiny
+        $ sudo cpan YAML::Tiny
         $ sudo perl -MCPAN -e 'install "File::HomeDir"'
 
 
