@@ -34,7 +34,7 @@ By default, Sublime does not translate tabs to spaces. If you wish to use tabs y
 ### Key Binding
 
 ```
-  ctrl + cmd + k on OS X, or ctrl + alt + k on Windows
+  ctrl + cmd + l on OS X, or ctrl + alt + l on Windows
 ```
 
 # Installation
